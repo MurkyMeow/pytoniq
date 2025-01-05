@@ -28,9 +28,8 @@ class ShardOverlay:
     def init_handlers(self):
         if self.external_messages_handler is not None:
             self._overlay.set_broadcast_handler('tonNode.externalMessageBroadcast', self.external_messages_handler)
-        if self.blocks_handler is not None:
+        if self.shard_blocks_handler is not None:
             self._overlay.set_broadcast_handler('tonNode.newShardBlockBroadcast', self.shard_blocks_handler)
-            self._overlay.set_broadcast_handler('tonNode.blockBroadcast', self.blocks_handler)
 
     async def send_external_message(self, message: bytes):
         data = {'@type': 'tonNode.externalMessageBroadcast', 'message': {
